@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="filtro.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Filtros en JS</title>
+  </head>
+
+  <body>
+    <nav>
+      <form method="get">
+        <input
+          type="text"
+          name="filtro"
+          id="filtro"
+          placeholder="Filtrar por color o tipo"
+        />
+        <button type="submit">Filtrar</button>
+      </form>
+    </nav>
+    <div id="container">
+      <div id="titulo">
+        <h1>Lista de productos</h1>
+      </div>
+      <div id="containerTarjetas"></div>
+    </div>
+    <script src="filtro.js"></script>
+  </body>
+</html>
