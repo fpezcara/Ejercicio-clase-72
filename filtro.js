@@ -42,12 +42,6 @@ const containerTarjetas = document.getElementById("containerTarjetas");
 const form = document.querySelector("form");
 let inputUsuario = '';
 
-document.querySelector("input").onchange = e => {
-  inputUsuario = e.srcElement.value;
-  return inputUsuario
-}
-
-
 let tarjetas = productos.reduce((acc, curr) => {
   return (acc += `<div class="cards">
          <div class="img-cards">
@@ -60,9 +54,21 @@ let tarjetas = productos.reduce((acc, curr) => {
 
 containerTarjetas.innerHTML = tarjetas;
 
+document.querySelector("input").onkey = e => {
+  if(e.keyCode == 13) {
+  filtrarProductos()
+  }
+}
 
-form.onsubmit = e => {
+
+document.querySelector("input").onchange = e => {
+  inputUsuario = e.srcElement.value;
+  return inputUsuario
+}
+
+const filtrarProductos = form.onsubmit = e => {
   e.preventDefault();
+  
   containerTarjetas.innerHTML = "";
 
   const productosFiltrados = productos.filter(producto => {
@@ -79,26 +85,9 @@ form.onsubmit = e => {
       </div>
   `);
   }, "");
-  containerTarjetas.innerHTML = accTarjetasFiltradas;
-  console.log(accTarjetasFiltradas);
+
+    containerTarjetas.innerHTML = accTarjetasFiltradas;
+  
 };
 
-// console.log(productosFiltrados)
-// form.onsubmit = e => {
-//   e.preventDefault();
-//   const filtrar = productos.filter(producto => {
-//     producto.tipo === "zapato"
-// let arrayNuevo =  `<div class="cards">
-//     <div class="img-cards">
-//     <img src="${producto.img}" class="img-productos" alt="${producto.nombre}"></img>
-//     </div>
-//     <div class="nombre-producto"><p>${producto.nombre}</p></div>
-//     </div>
-//  `
-//  return arrayNuevo
-//   }
-//   )
 
-// }
-
-// la idea es que cuando aprieto onsubmit se aplique reduce, no em está saliendo por ahora
