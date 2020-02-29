@@ -39,6 +39,14 @@ const productos = [
 ];
 
 const containerTarjetas = document.getElementById("containerTarjetas");
+const form = document.querySelector("form");
+let inputUsuario = '';
+
+document.querySelector("input").onchange = e => {
+  inputUsuario = e.srcElement.value;
+  return inputUsuario
+}
+
 
 let tarjetas = productos.reduce((acc, curr) => {
   return (acc += `<div class="cards">
@@ -50,40 +58,29 @@ let tarjetas = productos.reduce((acc, curr) => {
   `);
 }, "");
 
-const form = document.querySelector("form");
-
 containerTarjetas.innerHTML = tarjetas;
 
- 
 
 form.onsubmit = e => {
   e.preventDefault();
-  containerTarjetas.innerHTML = '';
-  let arrayProductosFiltrados = '';
-  let productosFiltrados= '';
-    const filtrarTipo = productos.filter(producto => {
-    return productosFiltrados = producto.tipo === "zapato";
+  containerTarjetas.innerHTML = "";
 
-
-    const tarjetasFiltradas = productosFiltrados.map(producto => {
-      const accTarjetasFiltradas = producto.reduce((acc, curr) => {
-      arrayProductosFiltrados = acc + `<div class="cards">
+  const productosFiltrados = productos.filter(producto => {
+    return (producto.tipo === inputUsuario || producto.color === inputUsuario);
+    
+  });
+  console.log(productosFiltrados);
+  const accTarjetasFiltradas = productosFiltrados.reduce((acc, curr) => {
+    return (acc += `<div class="cards">
       <div class="img-cards">
       <img src="${curr.img}" class="img-productos" alt="${curr.nombre}"></img>
       </div>
       <div class="nombre-producto"><p>${curr.nombre}</p></div>
       </div>
-  `;
-  
-  return arrayProductosFiltrados  
-  console.log(arrayProductosFiltrados)
-})
-return producto
-  // });
-  containerTarjetas.innerHTML = accTarjetasFiltradas; 
-    });
-  });
-  
+  `);
+  }, "");
+  containerTarjetas.innerHTML = accTarjetasFiltradas;
+  console.log(accTarjetasFiltradas);
 };
 
 // console.log(productosFiltrados)
